@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --linen: #F2EFE9;
+    --bone: #FAF9F6;
+    --walnut: #2D2926;
+    --sage: #829460;
+    --sage-light: #b4c490;
+    --sage-pale: #EFF3E8;
+    --terra: #A67B5B;
+    --terra-pale: #F5EDE5;
+    --muted: #6B6560;
+    --border: #DDD8CF;
+  }
+  body { font-family: 'Lora', Georgia, serif; background: var(--linen); color: var(--walnut); font-size: 16px; line-height: 1.7; }
+
+  /* NAV */
+  nav { background: var(--bone); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--walnut); letter-spacing: 0.01em; }
+  .logo span { color: var(--sage); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-family: 'Lora', serif; font-size: 0.9rem; letter-spacing: 0.03em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--sage); }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+  .hero-left { background: var(--sage); padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; clip-path: polygon(0 0, 92% 0, 100% 100%, 0 100%); }
+  .hero-left h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; color: #fff; line-height: 1.25; margin-bottom: 1.2rem; }
+  .hero-left p { color: rgba(255,255,255,0.88); font-size: 1rem; margin-bottom: 2rem; max-width: 380px; }
+  .btn-primary { display: inline-block; background: var(--walnut); color: #fff; padding: 0.75rem 1.75rem; border-radius: 6px; text-decoration: none; font-family: 'Lora', serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: none; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.88; }
+  .hero-right { background: var(--terra-pale); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .hero-img-placeholder { width: 100%; max-width: 340px; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--terra-pale) 0%, #e8d4c2 100%); border-radius: 16px; border: 2px dashed var(--terra); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
+  .hero-img-placeholder .icon-big { font-size: 4rem; color: var(--terra); opacity: 0.5; }
+  .hero-img-placeholder p { color: var(--terra); font-size: 0.85rem; opacity: 0.7; }
+
+  /* SECTION WRAPPER */
+  section { padding: 4rem 2rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; color: var(--walnut); margin-bottom: 0.4rem; }
+  .section-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 2.5rem; }
+  .section-center { text-align: center; }
+
+  /* INQUIRY CARDS */
+  .inquiry-section { background: var(--bone); }
+  .card-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .inquiry-card { background: var(--linen); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .inquiry-card .icon-circle { width: 52px; height: 52px; border-radius: 50%; background: var(--sage-pale); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--sage); }
+  .inquiry-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; }
+  .inquiry-card p { color: var(--muted); font-size: 0.88rem; flex: 1; }
+  .btn-sage { display: inline-block; background: var(--sage); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; border: none; font-family: 'Lora', serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .btn-sage:hover { background: #6d7d4e; }
+
+  /* COURSE CARDS */
+  .courses-section { background: var(--linen); }
+  .course-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .course-card { background: var(--bone); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .course-thumb { height: 120px; background: var(--sage-pale); display: flex; align-items: center; justify-content: center; color: var(--sage); font-size: 2.5rem; }
+  .course-body { padding: 1.2rem 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+  .course-tag { display: inline-block; background: var(--sage-pale); color: var(--sage); font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 20px; font-weight: 500; letter-spacing: 0.04em; width: fit-content; }
+  .course-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; }
+  .course-meta { color: var(--muted); font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; }
+  .course-meta i { font-size: 0.9rem; color: var(--terra); }
+  .apply-btn { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--sage); color: #fff; border: none; padding: 0.65rem; border-radius: 0 0 14px 14px; font-family: 'Lora', serif; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; text-align: center; }
+  .apply-btn:hover { background: #6d7d4e; }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background: var(--terra-pale); }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+  .testi-card { background: var(--bone); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 1.25rem 1.5rem; text-align: center; position: relative; }
+  .testi-avatar { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 0.8rem; border: 3px solid var(--terra); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; }
+  .testi-badge { position: absolute; top: 1rem; right: 1rem; background: var(--sage); color: #fff; font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 20px; }
+  .testi-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1rem; }
+  .testi-grade { color: var(--terra); font-size: 0.8rem; margin-bottom: 0.8rem; }
+  .testi-text { font-style: italic; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* SERVICES */
+  .services-section { background: var(--bone); }
+  .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .service-card { background: var(--linen); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 1.25rem; text-align: center; }
+  .service-icon { width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .service-card p { color: var(--muted); font-size: 0.83rem; }
+
+  /* ABOUT */
+  .about-section { background: var(--linen); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .about-text p { color: var(--muted); font-size: 0.93rem; margin-bottom: 1rem; }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px; background: var(--sage); }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-dot { position: absolute; left: -1.65rem; top: 0.4rem; width: 12px; height: 12px; border-radius: 50%; background: var(--sage); border: 2px solid var(--bone); }
+  .tl-year { font-size: 0.78rem; color: var(--sage); font-weight: 500; margin-bottom: 0.1rem; letter-spacing: 0.06em; }
+  .tl-desc { font-size: 0.88rem; color: var(--walnut); }
+  .why-list { list-style: none; margin-top: 1.5rem; }
+  .why-list li { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+  .why-list li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+
+  /* FOOTER */
+  footer { background: var(--walnut); color: rgba(255,255,255,0.7); text-align: center; padding: 2.5rem 2rem; font-size: 0.85rem; }
+  footer strong { color: #fff; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { clip-path: none; padding: 3rem 1.5rem 2rem; }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 3rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Home Tuition <span>Institute</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>Where Young Minds Bloom into Champions.</h1>
+    <p>Personalised, caring, and results-driven home tuition — helping every child reach their fullest potential.</p>
+    <a href="#" class="btn-primary">Explore Our Programmes →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <div class="icon-big">🌱</div>
+      <p>Student photography here</p>
+    </div>
+  </div>
+</div>
+
+<!-- INQUIRY CARDS -->
+<section class="inquiry-section">
+  <div class="section-center">
+    <div class="section-title">Who Are You?</div>
+    <div class="section-sub">We have something special tailored just for you.</div>
+  </div>
+  <div class="card-grid-3">
+    <div class="inquiry-card">
+      <div class="icon-circle">👨‍👩‍👧</div>
+      <h3>For Parents</h3>
+      <p>Find the right tutor for your child and track their progress with peace of mind.</p>
+      <a href="#" class="btn-sage">Learn More</a>
+    </div>
+    <div class="inquiry-card">
+      <div class="icon-circle">📚</div>
+      <h3>For Teachers</h3>
+      <p>Join our network of passionate educators and make a meaningful difference.</p>
+      <a href="#" class="btn-sage">Join Us</a>
+    </div>
+    <div class="inquiry-card">
+      <div class="icon-circle">🏫</div>
+      <h3>For Schools</h3>
+      <p>Partner with us to extend your students' learning beyond the classroom.</p>
+      <a href="#" class="btn-sage">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED COURSES -->
+<section class="courses-section">
+  <div class="section-center">
+    <div class="section-title">Featured Courses</div>
+    <div class="section-sub">Handpicked programmes to help your child excel.</div>
+  </div>
+  <div class="course-cards">
+    <div class="course-card">
+      <div class="course-thumb">📐</div>
+      <div class="course-body">
+        <span class="course-tag">Mathematics</span>
+        <div class="course-title">Foundation Maths Mastery</div>
+        <div class="course-meta"><i>📍</i> Kathmandu, Home Visit</div>
+        <div class="course-meta"><i>👦</i> Ages 8 – 12</div>
+        <div class="course-meta"><i>🗓</i> Mon / Wed / Fri, 4 PM</div>
+      </div>
+      <button class="apply-btn">✈ Apply Now</button>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb">🔬</div>
+      <div class="course-body">
+        <span class="course-tag">Science</span>
+        <div class="course-title">Science Explorer Programme</div>
+        <div class="course-meta"><i>📍</i> Online / Flexible</div>
+        <div class="course-meta"><i>👦</i> Ages 11 – 15</div>
+        <div class="course-meta"><i>🗓</i> Tue / Thu, 5 PM</div>
+      </div>
+      <button class="apply-btn">✈ Apply Now</button>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb">✍️</div>
+      <div class="course-body">
+        <span class="course-tag">English</span>
+        <div class="course-title">Advanced English Writing</div>
+        <div class="course-meta"><i>📍</i> Lalitpur, Home Visit</div>
+        <div class="course-meta"><i>👦</i> Ages 13 – 17</div>
+        <div class="course-meta"><i>🗓</i> Sat / Sun, 10 AM</div>
+      </div>
+      <button class="apply-btn">✈ Apply Now</button>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb">🌏</div>
+      <div class="course-body">
+        <span class="course-tag">Social Studies</span>
+        <div class="course-title">Global Citizens Class</div>
+        <div class="course-meta"><i>📍</i> Bhaktapur, Home Visit</div>
+        <div class="course-meta"><i>👦</i> Ages 10 – 14</div>
+        <div class="course-meta"><i>🗓</i> Wed / Fri, 3 PM</div>
+      </div>
+      <button class="apply-btn">✈ Apply Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-center">
+    <div class="section-title">Student Stories</div>
+    <div class="section-sub">Real results, real families, real pride.</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <span class="testi-badge">GPA 3.9</span>
+      <div class="testi-avatar" style="background:#EFF3E8; color:#829460;">A</div>
+      <div class="testi-name">Aarav Sharma</div>
+      <div class="testi-grade">Grade 10 · Mathematics</div>
+      <p class="testi-text">"My tutor made algebra feel like solving puzzles. I went from failing to topping my class in just one term."</p>
+    </div>
+    <div class="testi-card">
+      <span class="testi-badge">🏆 Top of Class</span>
+      <div class="testi-avatar" style="background:#F5EDE5; color:#A67B5B;">P</div>
+      <div class="testi-name">Priya Thapa</div>
+      <div class="testi-grade">Grade 8 · English</div>
+      <p class="testi-text">"I used to dread writing essays. Now I love expressing myself. My confidence has grown so much this year."</p>
+    </div>
+    <div class="testi-card">
+      <span class="testi-badge">98 Percentile</span>
+      <div class="testi-avatar" style="background:#F2EFE9; color:#6B6560;">R</div>
+      <div class="testi-name">Rohan Karki</div>
+      <div class="testi-grade">Grade 12 · Science</div>
+      <p class="testi-text">"The exam preparation sessions were incredibly structured. I walked into my SEE exam feeling calm and ready."</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATIONAL SERVICES -->
+<section class="services-section">
+  <div class="section-center">
+    <div class="section-title">Educational Resources</div>
+    <div class="section-sub">Everything a student needs to thrive, in one place.</div>
+  </div>
+  <div class="service-cards">
+    <div class="service-card">
+      <div class="service-icon" style="background:#EFF3E8; color:#829460;">📝</div>
+      <h3>Subject Notes</h3>
+      <p>Comprehensive, well-organised notes crafted by expert tutors for every subject and grade level.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#F5EDE5; color:#A67B5B;">🎯</div>
+      <h3>Exam Preparation</h3>
+      <p>Targeted revision plans, mock tests, and past paper practice to build exam confidence and skill.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#F2EFE9; color:#2D2926;">✏️</div>
+      <h3>Practice Questions</h3>
+      <p>Thousands of graded practice questions to reinforce learning and track measurable improvement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / MISSION -->
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-title">Our Story</div>
+      <div class="section-sub">Built on love for learning.</div>
+      <p>Home Tuition Institute was founded with a simple but powerful belief: every child deserves personalised attention and the chance to flourish at their own pace. We bridge the gap between classroom learning and true understanding.</p>
+      <p>Our tutors are carefully vetted, passionate educators who don't just teach — they mentor, inspire, and adapt to each student's unique learning style.</p>
+      <p>From foundational subjects to advanced exam preparation, we are here for every step of your child's academic journey.</p>
+
+      <div class="section-title" style="margin-top:2rem; font-size:1.2rem;">Our Journey</div>
+      <div class="timeline" style="margin-top:1.2rem;">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2010</div><div class="tl-desc">Founded in Kathmandu with just 5 tutors and a vision.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2014</div><div class="tl-desc">Expanded to Lalitpur and Bhaktapur districts.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2018</div><div class="tl-desc">Launched online tutoring, reaching students nationwide.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023</div><div class="tl-desc">Celebrated 500+ students placed in top colleges.</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Why Choose Us</div>
+      <div class="section-sub">What sets us apart from the rest.</div>
+      <ul class="why-list">
+        <li>Personally matched tutors based on your child's learning style and needs</li>
+        <li>Flexible scheduling — morning, afternoon, or evening sessions available</li>
+        <li>Regular progress reports shared with parents every two weeks</li>
+        <li>Home visits or fully online sessions — your choice</li>
+        <li>Affordable, transparent pricing with no hidden fees</li>
+        <li>Trial session available before any long-term commitment</li>
+        <li>Dedicated support team available 7 days a week</li>
+      </ul>
+      <div style="margin-top:2rem;">
+        <a href="#" class="btn-sage" style="font-size:0.9rem; padding:0.75rem 2rem;">📞 Get in Touch Today</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:0.5rem;"><strong>Home Tuition Institute</strong></p>
+  <p>Kathmandu, Nepal · <a href="#">info@hometuition.edu.np</a> · +977 98XXXXXXXX</p>
+  <p style="margin-top:1rem; font-size:0.78rem; opacity:0.5;">© 2025 Home Tuition Institute. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
